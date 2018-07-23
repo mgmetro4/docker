@@ -45,7 +45,7 @@
 
 *\*\*NOTE: All commands below require the call to `docker`*
 
-### Images
+#### Images
 
 - `image pull <image>`: fetches the images from the Docker registry and saves it to the system.
 
@@ -59,7 +59,9 @@
 
 - `image inspect --format "{{ json .RootFS.Layers }}" <image ID>`: View layers used to build image as a json list.
 
-### Containers
+#### Containers
+
+- `container <container ID> stop`: try to shutdown container gracefully.
 
 - `container run <image>`: run a Docker container based of image.
 
@@ -67,9 +69,13 @@
 
 - `container run -i -t <image> /bin/sh`: (also -it, -ti); Run container and open interactive shell
 
+- `container run --interactive --tty --rm ubuntu bash`: Create and run container as interactive bash shell, allocate a pseudo-tty, and remove the container when execution in the shell is finished
+
 - `container run -it <image> /bin/ash`: run container and open interactive ash shell. Does not terminate image after command.
 
-- `container ls -a`: list the containers used previously. -a for all
+- `container ls -a`: list the containers used previously. `-a` for all; also `--all`; can also use `list`
+
+- `container rm <container ID>`: remove container from list.
 
 - `container exec <container ID> <command>`: execute command within container. If last command automatically closes container, you will have to load in interactive shell first to execute manually.
 
@@ -77,8 +83,11 @@
 
 - `container commmit <container ID>`: create a local copy of an image. How you can create custom images off other ones.
 
+- `container logs <container name>`: show logs from container.
 
-### Docker Swarm
+- `container top <container name>`: show top processes running inside the container.
+
+#### Docker Swarm
 
 - `swarm init --advertise-addr $(hostname -i)`: Initialize Docker Swarm Manager. it listens on IP address returned by hostname -i.
 
@@ -104,7 +113,7 @@
 
 - `swarm leave --force`: remove the node from the Swarm.
 
-### Stacks
+#### Stacks
 
 - `stack deploy --compose-file=<stack.yml location> <stack name>`: deploy a stack
 
