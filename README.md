@@ -27,8 +27,23 @@
 
 - **Task**: One or more containers that make up a service.
 
+- **Swarm Mode**: Docker's native clustering configuration. Consists of manager and worker nodes where the worker nodes run the application containers.
+
+- **Orchestration**: The coordination of automated tasks to further simplify the service. Specifically referred to as deploying an application across multiple hosts in Docker.
+
 
 ## Commands
+
+- `docker ps`: show both currently running and stopped containers. If you run under a Swarm node, it will only show containers running on that node.
+
+- `docker info`: display general Docker and container information.
+
+- ` docker run -dt <image> sleep infinity`: create a new container of the image and run sleep command to keep it running in the background.
+
+- `docker kill <container ID>`: kill the container.
+
+
+*\*\*NOTE: All commands below require the call to `docker`*
 
 ### Images
 
@@ -67,11 +82,27 @@
 
 - `swarm init --advertise-addr $(hostname -i)`: Initialize Docker Swarm Manager. it listens on IP address returned by hostname -i.
 
-- `swarm join-token <token>`: add a worker node to the manager created.
+- `swarm join --token <token>`: add a worker node to the manager created.
+
+- `swarm join-token worker`: get a token to create a worker node.
 
 - `swarm join-token manager`: add a manager node to the manager.
 
-- `node ls`: display manager and worker nodes
+- `node ls`: display all manager and worker nodes within a Swarm
+
+- `docker service create --name <service name> <image> sleep infinity`: create a new container of the wanted image with a service and have it sleep in the background. Create services under a Swarm Manager to use **Orchestration**.
+
+- `docker service ls`: view all created services and the image they are assigned to under the Swarm Manager.
+
+- `service scale <service name>=<number>`: add more replcias of service manually.
+
+- `service update --replicas <num> <service name>`: scale up/down the number of containers of the service. If you run under your Swarm manager, the containers will branch out over the worker nodes.
+
+- ` docker node update --availability drain <node id from node ls>`: Clear node such that no containers are running on it.
+
+- `service rm <service name>`: Remove service from Swarm when run under manager node.
+
+- `swarm leave --force`: remove the node from the Swarm.
 
 ### Stacks
 
@@ -81,6 +112,6 @@
 
 - `stack services <stack name>`: get details on each service within the stack.
 
-- `service ps <stack service name>`: list tasks of that stack service.
+- `service ps <service name>`: list services of that stack.
 
-- `service scale <service name>=<number>`: add more replcias of service manually.
+
