@@ -1,9 +1,13 @@
-# Docker Reference
+ ____             _               ____       __
+|  _ \  ___   ___| | _____ _ __  |  _ \ ___ / _| ___ _ __ ___ _ __   ___ ___
+| | | |/ _ \ / __| |/ / _ \ '__| | |_) / _ \ |_ / _ \ '__/ _ \ '_ \ / __/ _ \
+| |_| | (_) | (__|   <  __/ |    |  _ <  __/  _|  __/ | |  __/ | | | (_|  __/
+|____/ \___/ \___|_|\_\___|_|    |_| \_\___|_|  \___|_|  \___|_| |_|\___\___|
 
 
 ## Vocabulary
 
-- **images**: The file system and configuration of our application which are used to create containers.
+- **Images**: The file system and configuration of our application which are used to create containers.
 
 - **Containers**: Running instances of Docker images. Run the acutal applications. Shares the kernel with other containers, and runs as an isoalted process in user space on the host OS.
 
@@ -23,12 +27,28 @@
 
 - **Volumes**: Special Docker contaienr layer that allows data to persist and be shared separately from the container itself.
 
+- **Stack**: group of services that are deployed together. Multiple containerized components of an application that run in separate instances.
+
+- **Task**: One or more containers that make up a service.
+
 
 ## Commands
+
+### Images
 
 - `image pull <image>`: fetches the images from the Docker registry and saves it to the system.
 
 - `image ls`: see a list of all images on your system.
+
+- `image tag <image_id> <wanted image name>`: tag an image.
+
+- `image build -t <image name>:<tag version name> .`: Build an image form a Dockerfile with tagging enabled.
+
+- `image history <image ID>`: Lists history of containers used to build image.
+
+- `image inspect --format "{{ json .RootFS.Layers }}" <image ID>`: View layers used to build image as a json list.
+
+### Containers
 
 - `container run <image>`: run a Docker container based of image.
 
@@ -46,11 +66,25 @@
 
 - `container commmit <container ID>`: create a local copy of an image. How you can create custom images off other ones.
 
-- `image tag <image_id> <wanted image name>`: tag an image.
 
-- `image build -t <image name>:<tag version name> .`: Build an image form a Dockerfile with tagging enabled.
+### Docker Swarm
 
-- `image history <image ID>`: Lists history of containers used to build image.
+- `swarm init --advertise-addr $(hostname -i)`: Initialize Docker Swarm Manager. it listens on IP address returned by hostname -i.
 
-- `image inspect --format "{{ json .RootFS.Layers }}" <image ID>`: View layers used to build image as a json list.
+- `swarm join-token <token>`: add a worker node to the manager created.
 
+- `swarm join-token manager`: add a manager node to the manager.
+
+- `node ls`: display manager and worker nodes
+
+### Stacks
+
+- `stack deploy --compose-file=<stack.yml location> <stack name>`: deploy a stack
+
+- `stack ls`: see if any stacks are deployed
+
+- `stack services <stack name>`: get details on each service within the stack.
+
+- `service ps <stack service name>`: list tasks of that stack service.
+
+- `service scale <service name>=<number>`: add more replcias of service manually.
