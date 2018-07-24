@@ -123,4 +123,10 @@
 
 - `service ps <service name>`: list services of that stack.
 
+#### Proxies
+To use proxies:
+1 right click on the Docker icon in your taskbar
+2 Click on Settings, go to Proxies, and select Manual
+3 Fill in HTTP, HTTPS, and bypass proxies
+
 
