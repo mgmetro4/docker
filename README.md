@@ -129,4 +129,11 @@ To use proxies:
 2.  Click on Settings, go to Proxies, and select Manual
 3.  Fill in HTTP, HTTPS, and bypass proxies
 
+If using node's npm, add your proxies to the dockerfile:
+```
+#npm proxy
+RUN npm config set proxy http://<proxy>:8080
+RUN npm config set https-proxy http://<proxy>:8080
+```
+
 
