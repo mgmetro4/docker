@@ -59,6 +59,10 @@
 
 - `image inspect --format "{{ json .RootFS.Layers }}" <image ID>`: View layers used to build image as a json list.
 
+- `images -q`: delete all images
+
+- `image prune -a --force --filter "label!=<image you want to keep>"`: delete all iamges but one. Can also use unti= for dates.
+
 #### Containers
 
 - `container <container ID> stop`: try to shutdown container gracefully.
@@ -86,6 +90,10 @@
 - `container logs <container name>`: show logs from container.
 
 - `container top <container name>`: show top processes running inside the container.
+
+- `ps -a -q`: delete all stopped containers.
+
+- ` ps -q`: kill all running containers
 
 #### Docker Swarm
 
