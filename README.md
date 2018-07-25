@@ -74,15 +74,15 @@
 
 #### Containers
 
-- `ps`: show currently running containers. If you run under a Swarm node, it will only show containers running on that node. 
-  - `-all/-a` show all including stopped. 
+- `container ls`: Also `--list`. Old: `docker ps`. List currently running containers. If you run under a Swarm node, it will only show containers running on that node. 
+  - `-all/-a` show all including stopped.
   - `--filter/-f` [filter](https://docs.docker.com/engine/reference/commandline/ps/#filtering). 
   - `--format` pretty-print containers using a Go template. 
   - `--last/-n` show n last created. 
   - `--latest/-l` show latest created. 
   - `--no-trunc` don't truncate output. 
   - `--quiet/-q` only display numeric IDs. 
-  - `--size/-s` dispaly total file sizes. 
+  - `--size/-s` dispaly total file sizes.
 
 - `container <container ID> stop`: try to shutdown container gracefully.
 
@@ -95,8 +95,6 @@
 - `container run --interactive --tty --rm ubuntu bash`: Create and run container as interactive bash shell, allocate a pseudo-tty, and remove the container when execution in the shell is finished
 
 - `container run -it <image> /bin/ash`: run container and open interactive ash shell. Does not terminate image after command.
-
-- `container ls -a`: list the containers used previously. `-a` for all; also `--all`; can also use `list`
 
 - `container rm <container ID>`: remove container from list.
 
