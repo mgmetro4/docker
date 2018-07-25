@@ -34,8 +34,6 @@
 
 ## Commands
 
-- `docker ps`: show both currently running and stopped containers. If you run under a Swarm node, it will only show containers running on that node.
-
 - `docker info`: display general Docker and container information.
 
 - ` docker run -dt <image> sleep infinity`: create a new container of the image and run sleep command to keep it running in the background.
@@ -50,20 +48,39 @@
 - `image pull <image>`: fetches the images from the Docker registry and saves it to the system.
 
 - `image ls`: see a list of all images on your system.
+  - `--all/-a` show all images
+  - `--digests` show digests
+  - `--filter/-f` [filter](https://docs.docker.com/engine/reference/commandline/images/#filtering)
+  - `--format` pretty-print images using a Go template
+  - `--no-trunc` don't truncate output
+  - `--quiet/-q` only show numeric IDs
 
 - `image tag <image_id> <wanted image name>`: tag an image.
 
 - `image build -t <image name>:<tag version name> .`: Build an image form a Dockerfile with tagging enabled.
+  - `--rm` remove intermediate containers after a successful build.
+  - `--tag/-t` name and optionally a tag in "name:tag" format
 
 - `image history <image ID>`: Lists history of containers used to build image.
 
 - `image inspect --format "{{ json .RootFS.Layers }}" <image ID>`: View layers used to build image as a json list.
 
-- `images -q`: delete all images
+- `images rm -a`: delete all images
 
-- `image prune -a --force --filter "label!=<image you want to keep>"`: delete all iamges but one. Can also use unti= for dates.
+- `image prune`: remove unused images.
+
 
 #### Containers
+
+- `ps`: show currently running containers. If you run under a Swarm node, it will only show containers running on that node. 
+  - `-all/-a` show all including stopped. 
+  - `--filter/-f` [filter](https://docs.docker.com/engine/reference/commandline/ps/#filtering). 
+  - `--format` pretty-print containers using a Go template. 
+  - `--last/-n` show n last created. 
+  - `--latest/-l` show latest created. 
+  - `--no-trunc` don't truncate output. 
+  - `--quiet/-q` only display numeric IDs. 
+  - `--size/-s` dispaly total file sizes. 
 
 - `container <container ID> stop`: try to shutdown container gracefully.
 
@@ -91,9 +108,19 @@
 
 - `container top <container name>`: show top processes running inside the container.
 
-- `ps -a -q`: delete all stopped containers.
+- `container prune`: remove all stopped containers.
+  - `--filter`:
+    - `until=<timestamp>`
+    - `label=<key>`
+    - `label=<key>=<value>`
+    - `label!=<key>`
+    - `label!=<key>=<value>`
+  - `--force/-f` do not prompt for confirmation.
 
-- ` ps -q`: kill all running containers
+- `rm $(docker ps -a)`: Can also be used to remove stopped containers.
+
+- `kill [OPTIONS] container <container ID>`: kill one or more running containers. Use `container ($docker ps -a)` to kill all containers.
+  - `--signal/-s` signal to send to container
 
 #### Docker Swarm
 
