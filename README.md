@@ -42,6 +42,8 @@
 
 - `docker kill <container ID>`: kill the container.
 
+- `docker rename <ID> <new name>`: rename an image or container.
+
 
 *\*\*NOTE: All commands below require the call to `docker`*
 
