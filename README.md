@@ -117,14 +117,14 @@
     - `label!=<key>=<value>`
   - `--force/-f` do not prompt for confirmation.
 
-- `rm $(docker ps -a)`: Can also be used to remove stopped containers.
+- `rm (docker ps -a)`: Can also be used to remove stopped containers. Use pipes in windows.
 
-- `kill [OPTIONS] container <container ID>`: kill one or more running containers. Use `container ($docker ps -a)` to kill all containers.
+- `kill [OPTIONS] container <container ID>`: kill one or more running containers. Use `container $(docker ps -a)` to kill all containers. Use pipes in windows.
   - `--signal/-s` signal to send to container
 
 #### Docker Swarm
 
-- `swarm init --advertise-addr $(hostname -i)`: Initialize Docker Swarm Manager. it listens on IP address returned by hostname -i.
+- `swarm init --advertise-addr $(hostname -i)`: Initialize Docker Swarm Manager. it listens on IP address returned by hostname -i. Use pipes in windows.
 
 - `swarm join --token <token>`: add a worker node to the manager created.
 
