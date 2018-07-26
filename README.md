@@ -119,7 +119,7 @@
     - `label!=<key>=<value>`
   - `--force/-f` do not prompt for confirmation.
 
-- `rm (docker ps -a)`: Can also be used to remove stopped containers. Use pipes in windows.
+- `rm $(docker ps -a)`: Can also be used to remove stopped containers. Use pipes in windows.
 
 - `kill [OPTIONS] container <container ID>`: kill one or more running containers. Use `container $(docker ps -a)` to kill all containers. Use pipes in windows.
   - `--signal/-s` signal to send to container
