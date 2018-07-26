@@ -38,13 +38,6 @@
 
 - `docker info`: display general Docker and container information.
 
-- ` docker run -dt <image> sleep infinity`: create a new container of the image and run sleep command to keep it running in the background.
-
-- `docker kill <container ID>`: kill the container.
-
-- `docker rename <ID> <new name>`: rename an image or container.
-
-
 *\*\*NOTE: All commands below require the call to `docker`*
 
 #### Images
@@ -73,6 +66,8 @@
 
 - `image prune`: remove unused images.
 
+- `tag <image name> <wanted image tag>`: change name or tag of image.
+
 
 #### Containers
 
@@ -85,6 +80,12 @@
   - `--no-trunc` don't truncate output. 
   - `--quiet/-q` only display numeric IDs. 
   - `--size/-s` dispaly total file sizes.
+
+- `run -dt <image> sleep infinity`: create a new container of the image and run sleep command to keep it running in the background.
+
+`kill <container ID>`: kill the container.
+
+- `docker rename <container ID> <new name>`: rename an image or container.
 
 - `container <container ID> stop`: try to shutdown container gracefully.
 
