@@ -1,0 +1,4 @@
+# prevent local modules and debug logs from being copied onto your Docker image
+
+node_modules
+npm-debug.log
